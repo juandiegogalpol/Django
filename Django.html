@@ -1,0 +1,59 @@
+from django.shortcuts import render
+from django.http import HttpResponse
+
+def index(request):
+    return render(request, 'index.html')
+
+def about(request):
+    return render(request, 'about.html')
+
+def contact(request):
+    return render(request, 'contact.html')
+
+def products(request):
+    products = [
+        {
+            'name': 'Product 1',
+            'description': 'Description of product 1',
+            'price': 10.99
+        },
+        {
+            'name': 'Product 2',
+            'description': 'Description of product 2',
+            'price': 19.99
+        },
+        {
+            'name': 'Product 3',
+            'description': 'Description of product 3',
+            'price': 5.99
+        }
+    ]
+    return render(request, 'products.html', {'products': products})
+
+    <html>
+<head>
+    <title>My Web App - Home</title>
+</head>
+<body>
+    <h1>Welcome to My Web App!</h1>
+    <p>Here you will find all the best products at great prices!</p>
+</body>
+</html>
+
+<html>
+<head>
+    <title>My Web App - Products</title>
+</head>
+<body>
+    <h1>Our Products</h1>
+    <ul>
+        {% for product in products %}
+        <li>
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description }}</p>
+            <p>Price: ${{ product.price }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
